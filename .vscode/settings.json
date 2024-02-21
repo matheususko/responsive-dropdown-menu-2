@@ -1,0 +1,7 @@
+{
+  "discord.removeRemoteRepository": true,
+  "discord.removeDetails": false,
+  "discord.removeTimestamp": true,
+  "discord.lowerDetailsIdling": "",
+  "discord.lowerDetailsNoWorkspaceFound": "."
+}

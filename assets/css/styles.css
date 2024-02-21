@@ -1,5 +1,12 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+@font-face {
+  font-family: 'Sf';
+  src: url('SF-Pro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*=============== VARIABLES CSS ===============*/
 :root {
@@ -15,10 +22,11 @@
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
-  --body-font: "Montserrat", sans-serif;
-  --normal-font-size: .938rem;
+  --body-font: 'Sf', sans-serif;
+  --normal-font-size: 1rem;
 
   /*========== Font weight ==========*/
+  --font-light: 300;
   --font-regular: 400;
   --font-semi-bold: 600;
 
@@ -44,7 +52,8 @@
 body {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  background-color: var(--body-color);
+  background-color: #06060f;
+  font-stretch: expanded;
 }
 
 ul {
@@ -59,44 +68,46 @@ a {
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
-  max-width: 1120px;
+  max-width: 1516px;
   margin-inline: 1.5rem;
 }
 
 /*=============== HEADER ===============*/
 .header {
   position: fixed;
+  padding: 16px 0;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--black-color);
-  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
   z-index: var(--z-fixed);
 }
 
 /*=============== NAV ===============*/
 .nav {
-  height: var(--header-height);
+  height: auto;
 }
 
-.nav__logo, 
-.nav__burger, 
+.nav__logo,
+.nav__burger,
 .nav__close {
   color: var(--white-color);
 }
 
 .nav__data {
-  height: 100%;
   display: flex;
+  margin: auto 0;
   justify-content: space-between;
   align-items: center;
 }
 
 .nav__logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  column-gap: .25rem;
+  justify-content: center;
+  column-gap: 0.25rem;
   font-weight: var(--font-semi-bold);
+  font-size: 32px;
+
   /* Color highlighting when pressed on mobile devices */
   /*-webkit-tap-highlight-color: transparent;*/
 }
@@ -112,7 +123,7 @@ a {
   height: 32px;
 }
 
-.nav__burger, 
+.nav__burger,
 .nav__close {
   position: absolute;
   width: max-content;
@@ -121,7 +132,7 @@ a {
   margin: auto;
   font-size: 1.25rem;
   cursor: pointer;
-  transition: opacity .1s, transform .4s;
+  transition: opacity 0.1s, transform 0.4s;
 }
 
 .nav__close {
@@ -130,35 +141,119 @@ a {
 
 /* Navigation for mobile devices */
 @media screen and (max-width: 1118px) {
+  * {
+    display: box-sizing;
+    marign: 0;
+    padding: 0;
+  }
+
+  .show-menu {
+    top: 0;
+  }
   .nav__menu {
     position: absolute;
     left: 0;
-    top: 2.5rem;
     width: 100%;
     height: calc(100vh - 3.5rem);
     overflow: auto;
     pointer-events: none;
     opacity: 0;
-    transition: top .4s, opacity .3s;
+    transition: top 0.4s, opacity 0.3s;
   }
   .nav__menu::-webkit-scrollbar {
     width: 0;
   }
   .nav__list {
-    background-color: var(--black-color);
-    padding-top: 1rem;
+    height: 100%;
   }
+  .nav__list li a {
+    display: column;
+    justify-content: flex-start;
+    padding: 0 12px 0 12px;
+  }
+  .nav__list li a {
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+  }
+
+  .nav__link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .dropdown__menu {
+    background: transparent !important;
+  }
+
+  .dropdown__menu li {
+    margin-top: 12px;
+  }
+
+  .nav__list {
+    background: linear-gradient(10deg, #5a45fe 0%, rgba(90, 69, 254, 0) 100%);
+    backdrop-filter: blur(20px);
+  }
+
+  .nav__list li {
+    margin-top: 24px;
+  }
+
+  .nav__list li a {
+    padding: 12px 0 12px 12px;
+  }
+
+  .dropdown__item {
+    display: column;
+  }
+
+  .nav__link:hover {
+    background: transparent !important;
+  }
+
+  .nav__link:focus {
+    background: transparent !important;
+    backdrop-filter: blur(20px);
+  }
+
+  .dropdown__item .nav__link {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .dropdown__link {
+    padding: 1rem 0 1rem 2rem !important;
+  }
+
+  .nav__link .dropdown__arrow {
+    padding: 16px;
+  }
+
+  .nav__button a {
+    display: none;
+  }
+}
+
+.nav__list .nav__link .ph {
+  font-size: 28px;
+  padding: 8px;
 }
 
 .nav__link {
   color: var(--white-color);
-  background-color: var(--black-color);
-  font-weight: var(--font-semi-bold);
-  padding: 1.25rem 1.5rem;
+  font-weight: var(--font-light);
+  padding: 12px 0 12px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
+}
+
+.nav__link #button__ferramentas {
+  display: flex;
+  align-items: center;
 }
 
 .nav__link:hover {
@@ -168,7 +263,7 @@ a {
 /* Show menu */
 .show-menu {
   opacity: 1;
-  top: 3.5rem;
+  top: 2.5rem;
   pointer-events: initial;
 }
 
@@ -190,44 +285,53 @@ a {
 .dropdown__arrow {
   font-size: 1.25rem;
   font-weight: initial;
-  transition: transform .4s;
+  transition: transform 0.4s;
+}
+.dropdown__menu .dropdown__link .ph {
+  font-size: 28px;
 }
 
-.dropdown__link, 
+.dropdown__menu {
+  background: linear-gradient(180deg, #5a45fe 0%, rgba(90, 69, 254, 0) 100%);
+  width: 100%;
+  backdrop-filter: blur(20px);
+}
+
+.dropdown__link,
 .dropdown__sublink {
   padding: 1.25rem 1.25rem 1.25rem 2.5rem;
   color: var(--white-color);
-  background-color: var(--black-color-light);
   display: flex;
+  width: auto;
   align-items: center;
-  column-gap: .5rem;
+  column-gap: 0.5rem;
   font-weight: var(--font-semi-bold);
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
 
-.dropdown__link i, 
+.dropdown__link i,
 .dropdown__sublink i {
   font-size: 1.25rem;
   font-weight: initial;
 }
 
-.dropdown__link:hover, 
+.dropdown__link:hover,
 .dropdown__sublink:hover {
   background-color: var(--black-color);
 }
 
-.dropdown__menu, 
+.dropdown__menu,
 .dropdown__submenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .4s ease-out;
+  transition: max-height 0.4s ease-out;
 }
 
 /* Show dropdown menu & submenu */
-.dropdown__item:hover .dropdown__menu, 
+.dropdown__item:hover .dropdown__menu,
 .dropdown__subitem:hover > .dropdown__submenu {
   max-height: 1000px;
-  transition: max-height .4s ease-in;
+  transition: max-height 0.4s ease-in;
 }
 
 /* Rotate dropdown icon */
@@ -254,16 +358,22 @@ a {
   .nav__link {
     padding-inline: 1rem;
   }
+
+  .nav__button a {
+    display: none;
+  }
 }
+
+/* Redimeson header */
 
 /* For large devices */
 @media screen and (min-width: 1118px) {
   .container {
     margin-inline: auto;
+    padding:
   }
 
   .nav {
-    height: calc(var(--header-height) + 2rem);
     display: flex;
     justify-content: space-between;
   }
@@ -273,36 +383,39 @@ a {
   .nav__list {
     height: 100%;
     display: flex;
-    column-gap: 3rem;
+    column-gap: 10px;
   }
   .nav__link {
     height: 100%;
-    padding: 0;
+    padding: 2px 20px 2px 8px;
     justify-content: initial;
-    column-gap: .25rem;
+    column-gap: 0.25rem;
   }
   .nav__link:hover {
-    background-color: transparent;
+    background-color: rgba(64, 48, 180, 0.3);
+  }
+  .nav__link:focus {
+    border-bottom: 1px solid rgba(255, 255, 255, 1);
   }
 
-  .dropdown__item, 
+  .dropdown__item,
   .dropdown__subitem {
     position: relative;
   }
 
-  .dropdown__menu, 
+  .dropdown__menu,
   .dropdown__submenu {
     max-height: initial;
     overflow: initial;
     position: absolute;
     left: 0;
-    top: 6rem;
+    top: 3rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity .3s, top .3s;
+    transition: opacity 0.3s, top 0.3s;
   }
 
-  .dropdown__link, 
+  .dropdown__link,
   .dropdown__sublink {
     padding-inline: 1rem 3.5rem;
   }
@@ -314,15 +427,15 @@ a {
   .dropdown__submenu {
     position: absolute;
     left: 100%;
-    top: .5rem;
+    top: 0.5rem;
   }
 
   /* Show dropdown menu */
   .dropdown__item:hover .dropdown__menu {
     opacity: 1;
-    top: 5.5rem;
+    top: 3.1rem;
     pointer-events: initial;
-    transition: top .3s;
+    transition: top 0.3s;
   }
 
   /* Show dropdown submenu */
@@ -330,6 +443,115 @@ a {
     opacity: 1;
     top: 0;
     pointer-events: initial;
-    transition: top .3s;
+    transition: top 0.3s;
   }
+}
+
+
+
+.nav .button {
+  display: flex;
+  align-items: center;
+}
+
+.nav .button .nav__button {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+}
+.nav .button .nav__button:hover {
+}
+
+.nav .button .nav__button a {
+  background: #e6e6e6;
+  color: #3a3a3a;
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: 1px;
+  font-stretch: expanded medium;
+  padding: 16px 56px;
+  border-radius: 8px;
+}
+.nav .button .nav__button a:hover {
+  background: #5a44fe;
+  color: #fefefe;
+}
+.nav .button .nav__button a:focus {
+  background: #4030b4;
+  color: #aeafb1;
+}
+
+/* Banner hero */
+
+#banner-hero {
+  max-widht: 1920px;
+  height: auto;
+  color: rgba(90, 68, 254, 1);
+  padding: 177px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 164px;
+}
+
+#banner-hero .title {
+  display: flex;
+  flex-direction: column;
+  text-aling: center;
+  gap: 32px;
+}
+
+#banner-hero .title h1 {
+  font-size: 120px;
+}
+
+#banner-hero .title p {
+  font-size: 32px;
+}
+
+/* Input in BannerHero */
+
+#input {
+  width: 677px;
+  padding: 12px 12px 12px 22px;
+  background: linear-gradient(
+    90deg,
+    rgba(90, 69, 254, 0.6) 0%,
+    rgba(90, 69, 254, 0) 109.43%
+  );
+  border-radius: 100px;
+  border: 1px solid #fff;
+}
+
+#input .input-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+#input .input-box input {
+  background: transparent;
+  border-style: none;
+  font-size: 32px;
+  font-family: var(--body-font);
+  font-stretch: expanded;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+#input .input-box .ph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  padding: 12px;
+  font-size: 32px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+// social icons
+.description p {
+  font-size: 102px !important;
 }
